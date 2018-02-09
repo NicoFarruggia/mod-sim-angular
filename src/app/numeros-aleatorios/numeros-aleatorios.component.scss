@@ -1,0 +1,38 @@
+.form-group {
+    label {
+        margin-bottom: 0;
+        position: absolute;
+        top: 12px;
+        transition: all .2s ease-in-out;
+    }
+
+    .form-control {
+        border: 0;
+        border-bottom: 1px solid #ccc;
+        border-radius: 0;
+        font-size: 1em;
+        padding-left: 0;
+
+        &::after {
+            background-color: #2196F3;
+            bottom: 0;
+            content: "";
+            display: block;
+            height: 2px;
+            left: 0;
+            position: absolute;
+            width: 100%;
+            z-index: 999;
+        }
+
+        &:focus {
+            box-shadow: none;
+
+            + label {
+                color: #2196F3;
+                font-size: 0.9em;
+                top: -12px;
+            }
+        }
+    }
+}

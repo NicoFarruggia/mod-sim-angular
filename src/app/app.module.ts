@@ -7,9 +7,11 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './ui/header.component';
 import { IntroductionComponent } from './pages/introduction/introduction.component';
+import { NumerosAleatoriosComponent } from './numeros-aleatorios/numeros-aleatorios.component';
 
 const appRoutes: Routes = [
     { path: 'introduction', component: IntroductionComponent },
+    { path: 'numeros-aleatorios', component: NumerosAleatoriosComponent },
     { path: '**', redirectTo: 'introduction' }
 ];
 
@@ -17,7 +19,8 @@ const appRoutes: Routes = [
     declarations: [
 		AppComponent,
 		HeaderComponent,
-		IntroductionComponent
+		IntroductionComponent,
+		NumerosAleatoriosComponent
     ],
     imports: [
         RouterModule.forRoot(appRoutes),

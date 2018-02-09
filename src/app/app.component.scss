@@ -1,0 +1,24 @@
+@import '../sass/_variables.scss';
+
+.content-wrapper {
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    margin: 15px auto;
+    max-width: 800px;
+    padding: 22px 35px;
+}
+
+h1 {
+    font-size: 1.75em;
+    font-weight: 300;
+    margin-bottom: 22px;
+
+    &::after {
+        background-color: $pomegranate;
+        content: "";
+        display: block;
+        height: 1px;
+        position: absolute;
+        width: 4%;
+    }
+}

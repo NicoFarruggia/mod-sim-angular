@@ -1,0 +1,18 @@
+@import './variables';
+@import './mixins';
+@import '../../node_modules/font-awesome/scss/font-awesome';
+@import "~bootstrap/dist/css/bootstrap.css";
+@import 
+    '~bootstrap/scss/functions',
+    '~bootstrap/scss/variables',
+    '~bootstrap/scss/mixins',
+    '~bootstrap/scss/print',
+    '~bootstrap/scss/reboot',
+    '~bootstrap/scss/type';
+
+body {
+    background-color: $bg-color;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+}

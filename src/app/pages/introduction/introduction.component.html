@@ -1,0 +1,25 @@
+<h1>Enunciado del problema.</h1>
+
+<p>Plantee un problema de decisi&oacute;n definiendo un objetivo de optimizaci&oacute;n, al menos una alternativa al 
+sistema actual y las medidas de rendimiento apropiadas. Construya tambi&eacute;n un modelo de simulaci&oacute;n que 
+permita tomar la decisi&oacute;n de cu&aacute;l de las alternativas es la m&aacute;s conveniente. Desarrolle 
+expl&iacute;citamente los aspectos relativos a la organizaci&oacute;n de la experiencia de simulaci&oacute;n y 
+an&aacute;lisis de los resultados.</p>
+<p>Los barcos arriban a un puerto con un tiempo entre arribos distribuido en forma exponencial con una media de 1.25 
+d&iacute;as. El puerto contiene un muelle, dos amarraderos y dos gr&uacute;as para la descarga de los barcos. 
+Cuando los barcos arriban y los amarraderos est&aacute;n ocupados se unen a una cola FIFO. El tiempo para que 
+una gr&uacute;a descargue un barco se distribuye en forma uniforme entre 0.5 y 1.5 d&iacute;as. Si solo un barco 
+est&aacute; en el puerto, ambas gr&uacute;as descargan al barco y el tiempo de descarga se reduce a la mitad. 
+Cuando dos barcos est&aacute;n en el puerto, cada gr&uacute;a atiende a un barco. Si ambas gr&uacute;as 
+est&aacute;n trabajando con un barco cuando arriba un segundo barco, una de las gr&uacute;as comienza 
+inmediatamente el servicio al segundo barco y el tiempo de servicio remanente para el primer barco se duplica.</p>
+
+<div class="col-3">
+    <div *ngFor="let member of teamMembers" class="card">
+        <img class="card-img-top" [src]="'../../../assets/images/' + member + '.jpg'" alt="Card image cap">
+        <div class="card-body">
+            <h5 [innerHTML]="member" class="card-title"></h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
+</div>

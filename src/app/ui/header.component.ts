@@ -14,7 +14,7 @@ export class HeaderComponent {
             itemPath: 'introduction'
         },{
             itemTitle: 'n&uacute;meros aleatorios',
-            itemPath: 'numeros-aleatorios'
+            itemPath: 'random-numbers'
         },{
             itemTitle: 'variables',
             itemPath: 'variables'

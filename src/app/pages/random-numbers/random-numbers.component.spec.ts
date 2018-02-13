@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NumerosAleatoriosComponent } from './numeros-aleatorios.component';
+import { RandomNumbersComponent } from './random-numbers.component';
 
 describe('NumerosAleatoriosComponent', () => {
-    let component: NumerosAleatoriosComponent;
-    let fixture: ComponentFixture<NumerosAleatoriosComponent>;
+    let component: RandomNumbersComponent;
+    let fixture: ComponentFixture<RandomNumbersComponent>;
 
     beforeEach(async(() => {
       	TestBed.configureTestingModule({
-    		declarations: [ NumerosAleatoriosComponent ]
+    		declarations: [ RandomNumbersComponent ]
       	})
       	.compileComponents();
     }));
 
   	beforeEach(() => {
-    	fixture = TestBed.createComponent(NumerosAleatoriosComponent);
+    	fixture = TestBed.createComponent(RandomNumbersComponent);
     	component = fixture.componentInstance;
     	fixture.detectChanges();
   	});

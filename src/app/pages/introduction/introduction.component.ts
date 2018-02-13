@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
     styleUrls: ['./introduction.component.scss']
 })
 export class IntroductionComponent {
-    teamMembers: Array<string> = ['Nicolas Farruggia', 'Leandro Donato', 'Sebastian Meza', 'Alexis Palavecino', 'Jonatan García'];
+    teamMembers: Array<string> = [
+        'Nicolas Farruggia', 
+        'Leandro Donato', 
+        'Sebastian Meza', 
+        'Alexis Palavecino', 
+        'Jonatan García'
+    ];
 }

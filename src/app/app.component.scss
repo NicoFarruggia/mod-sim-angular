@@ -1,5 +1,6 @@
 @import '../sass/_variables.scss';
 
+// GENERAL
 .content-wrapper {
     background-color: white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -9,16 +10,116 @@
 }
 
 h1 {
-    font-size: 1.75em;
+    font-size: 28px;
     font-weight: 300;
-    margin-bottom: 22px;
+    margin-bottom: 42px;
+}
+
+// FORMS
+.form-group {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: 40px;
+    position: relative;
+
+    label {
+        font-weight: 500;
+        position: absolute;
+        top: 2px;
+        transition: all .2s ease-in-out;
+
+        &.floating {
+            color: $focus-color;
+            top: -18px;
+        }
+    }
+
+    .form-control {
+        background: white no-repeat;
+        background-image: linear-gradient(to bottom, $focus-color, $focus-color), linear-gradient(to bottom, silver, silver);
+        background-size: 0 2px, 100% 0;
+        background-position: 50% 100%, 50% 100%;
+        border: 0;
+        border-bottom: 1px solid #ddd;
+        border-radius: 0;
+        padding: 0;
+        transition: background-size .3s cubic-bezier(0.64, 0.09, 0.08, 1);
+
+        &:focus {
+            background-size: 100% 2px, 100% 0;
+            border-color: white;
+            box-shadow: none;
+            outline: none;
+
+            & + label {
+				color: $focus-color;
+			}
+        }
+    }
+}
+
+.button {
+    border: none;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, .4);
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.025em;
+    font-weight: 500;
+    height: 36px;
+    letter-spacing: .2px;
+    margin: 10px 5px;
+    overflow: hidden;
+    padding: 1px 15px;
+    position: relative;
+    text-transform: uppercase;
+    transition: all .4s ease-in-out;
+
+    &.button-default {
+        background-color: darken($white-smoke, 1);
+        color: rgba(50, 50, 50, 0.95);
+    }
+
+    &.button-primary {
+        background-color: $pomegranate;
+        color: rgba(255, 255, 255, 0.95);
+    }
+
+    &:hover,
+    &:focus {
+        outline: none;
+    }
 
     &::after {
-        background-color: $pomegranate;
-        content: "";
-        display: block;
-        height: 1px;
+        background: rgba(255, 255, 255, .2);
+        border-radius: 100%;
+        content: '';
+        left: 50%;
+        height: 5px;
+        opacity: 0;
         position: absolute;
-        width: 4%;
+        top: 50%;
+        transform: scale(1, 1) translate(-50%);
+        transform-origin: 50% 50%;
+        width: 5px;
     }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 1;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+.button:focus:not(:active)::after {
+    animation: ripple 2s ease-out;
 }

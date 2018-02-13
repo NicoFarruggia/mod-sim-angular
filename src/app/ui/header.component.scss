@@ -49,13 +49,12 @@
                 &.active {
                     &::after {
                         background-color: white;
-                        border-radius: 50%;
                         content: "";
                         display: block;
-                        height: 5px;
-                        left: calc(50% - 5px / 2);
+                        height: 1px;
+                        left: 0;
                         position: absolute;
-                        width: 5px;
+                        width: 100%;
                     }
                 }
             }

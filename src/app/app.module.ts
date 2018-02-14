@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './ui/header.component';
 import { IntroductionComponent } from './pages/introduction/introduction.component';
 import { RandomNumbersComponent } from './pages/random-numbers/random-numbers.component';
+import { OnlyNumbersDirective } from "./directives/only-numbers.directive";
 
 const appRoutes: Routes = [
     { path: 'introduction', component: IntroductionComponent },
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
 		AppComponent,
 		HeaderComponent,
 		IntroductionComponent,
-		RandomNumbersComponent
+        RandomNumbersComponent,
+        OnlyNumbersDirective
     ],
     imports: [
         RouterModule.forRoot(appRoutes),

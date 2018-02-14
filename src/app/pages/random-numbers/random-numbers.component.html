@@ -4,11 +4,12 @@
 	<div class="row">
 		<div class="form-group col-4">
             <input 
-            type="text" 
-            id="parameterA" 
-            name="parameterA" 
-            class="form-control"
-            [(ngModel)]="genValues.parameterA" 
+                onlyNumbers
+                type="text" 
+                id="parameterA" 
+                name="parameterA" 
+                class="form-control"
+                [(ngModel)]="genValues.parameterA" 
             >
 			<label for="parameterA" [ngClass]="{floating: genValues.parameterA}">
                 Par&aacute;metro A
@@ -19,11 +20,12 @@
 	<div class="row">
 		<div class="form-group col-4">
             <input 
-            type="text" 
-            id="parameterM"
-            name="parameterM" 
-            class="form-control"
-            [(ngModel)]="genValues.parameterM" 
+                onlyNumbers
+                type="text" 
+                id="parameterM"
+                name="parameterM" 
+                class="form-control"
+                [(ngModel)]="genValues.parameterM" 
             >
 			<label for="parameterM" [ngClass]="{floating: genValues.parameterM}">
                 Par&aacute;metro M
@@ -34,11 +36,12 @@
 	<div class="row">
 		<div class="form-group col-4">
             <input 
-            type="text" 
-            id="initialSeed" 
-            name="initialSeed" 
-            class="form-control"
-            [(ngModel)]="genValues.initialSeed" 
+                onlyNumbers
+                type="text" 
+                id="initialSeed" 
+                name="initialSeed" 
+                class="form-control"
+                [(ngModel)]="genValues.initialSeed" 
             >
 			<label for="initialSeed" [ngClass]="{floating: genValues.initialSeed}">
                 Semilla Inicial (Z0)
@@ -49,11 +52,12 @@
     <div class="row">
         <div class="form-group col-4">
             <input 
-            type="text" 
-            id="numbersQuant" 
-            name="numbersQuant" 
-            class="form-control"
-            [(ngModel)]="genValues.numbersQuant" 
+                onlyNumbers
+                type="text" 
+                id="numbersQuant" 
+                name="numbersQuant" 
+                class="form-control"
+                [(ngModel)]="genValues.numbersQuant" 
             >
             <label for="numbersQuant" [ngClass]="{floating: genValues.numbersQuant}">
                 Cantidad de n&uacute;meros

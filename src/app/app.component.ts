@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { MessagesService } from './services/messages.service';
 
 @Component({
     selector: 'app-root',
@@ -7,5 +8,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title: string = 'Modelos de Simulaci&oacute;n';
+    public title: string = 'Modelos de Simulaci&oacute;n';
+    public toasterConfig;
+
+    constructor(private messagesService: MessagesService) {
+        this.toasterConfig = this.messagesService.getToasterConfig();
+    }
 }

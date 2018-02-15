@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IGeneratorValues } from './generator-values.interface';
+import { MessagesService } from '../../services/messages.service';
 
 @Component({
   	selector: 'random-numbers',
@@ -9,6 +10,11 @@ import { IGeneratorValues } from './generator-values.interface';
 export class RandomNumbersComponent {
     genValues: IGeneratorValues = {};
     randomNumbers: Array<number> = [];
+    messagesService: MessagesService;
+
+    constructor(messagesService: MessagesService) { 
+        this.messagesService = messagesService;
+    }
     
     populateDefaultValues(): void {
         this.genValues = {
@@ -24,6 +30,7 @@ export class RandomNumbersComponent {
     }
 
     generateNumbers(): void {
+        this.randomNumbers = [];
         let zi = this.genValues.initialSeed;
         let ui: number;
 
@@ -37,12 +44,28 @@ export class RandomNumbersComponent {
                 this.randomNumbers.push( +ui.toFixed(10) );
             }
         }
+
+        let type: string;
+        let title: string;
+        let message: string;
+
+        if (this.randomNumbers.length === +this.genValues.numbersQuant) {
+            type = 'success';
+            title = '¡Bien Hecho!';
+            message = `Se han generado con éxito ${this.randomNumbers.length} números aleatorios.`
+        } else {
+            type = 'error';
+            title = '¡Ups!';
+            message = 'Ocurrió un error inesperado.';
+        }
+
+        this.messagesService.showNotification(type, title, message, 5000);
     }
 
     getPrecise(dividend: number, divisor: number, precision: number): number {
-        let rest = +(dividend / divisor).toFixed(precision);
-        let integerRest = Math.trunc(rest);
-        let preciseNumber = dividend - integerRest * divisor;
+        const rest = +(dividend / divisor).toFixed(precision);
+        const integerRest = Math.trunc(rest);
+        const preciseNumber = dividend - integerRest * divisor;
 
         return preciseNumber;
     }

@@ -17,6 +17,10 @@ h1 {
     font-size: 28px;
     font-weight: 300;
     margin-bottom: 42px;
+
+    small {
+        font-size: 18px;
+    }
 }
 
 // FORMS
@@ -33,14 +37,14 @@ h1 {
         transition: all .2s ease-in-out;
 
         &.floating {
-            color: $focus-color;
+            color: $purple-heart;
             top: -18px;
         }
     }
 
     .form-control {
         background: white no-repeat;
-        background-image: linear-gradient(to bottom, $focus-color, $focus-color), linear-gradient(to bottom, silver, silver);
+        background-image: linear-gradient(to bottom, $purple-heart, $purple-heart), linear-gradient(to bottom, silver, silver);
         background-size: 0 2px, 100% 0;
         background-position: 50% 100%, 50% 100%;
         border: 0;
@@ -56,7 +60,7 @@ h1 {
             outline: none;
 
             & + label {
-				color: $focus-color;
+				color: $purple-heart;
 			}
         }
     }
@@ -85,11 +89,11 @@ h1 {
     }
 
     &.button-primary {
-        background-color: $pomegranate;
+        background-color: $purple-heart;
         color: rgba(255, 255, 255, 0.95);
 
         &.disabled {
-            background-color: lighten($pomegranate, 10);
+            background-color: lighten($purple-heart, 10);
             cursor: default;
         }
     }
@@ -131,4 +135,61 @@ h1 {
 
 .button:focus:not(:active)::after {
     animation: ripple 2s ease-out;
+}
+
+/* LOADING GIF */
+.loading {
+    animation: rotation .7s infinite linear;
+    -webkit-animation: rotation .7s infinite linear;
+    -moz-animation: rotation .7s infinite linear;
+    -o-animation: rotation .7s infinite linear;
+    border-bottom: 3px solid darken($white-smoke, 10);
+    border-left: 3px solid darken($white-smoke, 10);
+    border-radius: 100%;
+    border-right: 3px solid darken($white-smoke, 10);
+    border-top: 3px solid $purple-heart;
+    box-sizing: border-box;
+    height: 30px;
+    margin-left: 15px;
+    position: relative;
+    width: 30px;
+}
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@-moz-keyframes rotation {
+    from {
+        -moz-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@-o-keyframes rotation {
+    from {
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -o-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
 }

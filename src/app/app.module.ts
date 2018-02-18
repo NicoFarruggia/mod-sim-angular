@@ -11,8 +11,10 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './ui/header.component';
 import { IntroductionComponent } from './pages/introduction/introduction.component';
 import { RandomNumbersComponent } from './pages/random-numbers/random-numbers.component';
+
 import { OnlyNumbersDirective } from "./directives/only-numbers.directive";
 import { MessagesService } from "./services/messages.service";
+import { RandomNumbersService } from './services/random-numbers.service';
 
 const appRoutes: Routes = [
     { path: 'introduction', component: IntroductionComponent },
@@ -37,7 +39,10 @@ const appRoutes: Routes = [
         BrowserAnimationsModule,
         AngularFontAwesomeModule
     ],
-    providers: [MessagesService],
+    providers: [
+        MessagesService,
+        RandomNumbersService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

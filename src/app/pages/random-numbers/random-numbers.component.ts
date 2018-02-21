@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IGeneratorValues } from './generator-values.interface';
 import { MessagesService } from '../../services/messages.service';
 import { RandomNumbersService } from '../../services/random-numbers.service';
-import { setTimeout } from 'timers';
 
 @Component({
   	selector: 'random-numbers',

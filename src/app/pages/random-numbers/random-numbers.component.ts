@@ -16,6 +16,8 @@ export class RandomNumbersComponent {
     randomNumbersService: RandomNumbersService;
     testingUniformity: boolean;
 
+    valores_iniciales = {};
+
     constructor(messagesService: MessagesService, randomNumbersService: RandomNumbersService) { 
         this.messagesService = messagesService;
         this.randomNumbersService = randomNumbersService;
@@ -41,6 +43,7 @@ export class RandomNumbersComponent {
     generateNumbers(): void {
         this.randomNumbers = [];
         let zi = this.genValues.initialSeed;
+        this.valores_iniciales = this.genValues;
         let ui: number;
 
         for (let i = 0; i <= this.genValues.numbersQuant; i++) {
@@ -112,9 +115,34 @@ export class RandomNumbersComponent {
                     }
                 });
             } 
+            
+            // Obtengo N.
+            let n = this.valores_iniciales['numbersQuant'];
+
+            var sumatoria_1 = 0;
+
+            // Recorro los subintervalos.
+            subIntervals.forEach((element) => {
+                
+                // Obtengo la frecuencia.
+                let frecuencia = element[2];
+                
+                let resultado_1 =  frecuencia - (n/k);
+
+                let resultado_2 = resultado_1 * resultado_1;
+
+                sumatoria_1 = sumatoria_1 + resultado_2;
+
+            });
+
+            let chi_cuadrado_calculado = sumatoria_1 * (k/n);
+            
+            console.log(chi_cuadrado_calculado);
 
             this.testingUniformity = false; 
         }, 1000);
+
+        
 
         /*subIntervals.forEach((element) => {
             document.write('Intervalo: ' + element[0] + ' - ' + element[1] + '/////// FRECUENCIA :' + element[2] + '<br>');

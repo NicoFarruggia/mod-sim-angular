@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IGeneratorValues } from './generator-values.interface';
 import { MessagesService } from '../../services/messages.service';
 import { RandomNumbersService } from '../../services/random-numbers.service';
+import { TestUniformidadService } from "../../services/test-uniformidad.service";
+
 
 @Component({
   	selector: 'random-numbers',
@@ -18,7 +20,7 @@ export class RandomNumbersComponent {
 
     valores_iniciales = {};
 
-    constructor(messagesService: MessagesService, randomNumbersService: RandomNumbersService) { 
+    constructor(messagesService: MessagesService, randomNumbersService: RandomNumbersService, private testUniformidad: TestUniformidadService) { 
         this.messagesService = messagesService;
         this.randomNumbersService = randomNumbersService;
     }
@@ -29,10 +31,11 @@ export class RandomNumbersComponent {
     
     populateDefaultValues(): void {
         this.genValues = {
-            parameterA: 5,
-            parameterM: 65003,
-            initialSeed: 7,
-            numbersQuant: 65000
+            parameterA: 17364,
+            parameterM: 65521,
+            initialSeed: 1,
+            numbersQuant: 65000,
+            k: 4096
         }
     }
 
@@ -89,63 +92,16 @@ export class RandomNumbersComponent {
         this.messagesService.showNotification(type, title, message, 5000);
     }
 
-    uniformityTest(): void {
+    test_uniformidad(){
         this.testingUniformity = true;
-
         setTimeout(() => {
-            let a = 0;
-            let k = 4096;
-            let randomNumber = 0;
-            let subInterval = 1 / k;
-            let subIntervalTemp = 0 - subInterval;
-            let subIntervals: Array<any> = [
-                [0 , 1, 'frecuencia']
-            ];
-            
-            for(a = 0 ; a < k; a++) {
-                subIntervalTemp = subIntervalTemp + subInterval;
-                subIntervals[a] = [subIntervalTemp, subIntervalTemp + subInterval, 0 ];
-            }
-            
-            for(let i = 0 ; i < this.randomNumbersService.sequences[0].length; i++) {
-                randomNumber = this.randomNumbersService.sequences[0][i];
-                subIntervals.forEach((element) => {
-                    if (randomNumber >= element[0] && randomNumber < element[1]) {
-                        element[2]++;
-                    }
-                });
-            } 
-            
-            // Obtengo N.
-            let n = this.valores_iniciales['numbersQuant'];
+            var rta_unifirmidad = this.testUniformidad.uniformityTest(this.valores_iniciales);
+            console.log(rta_unifirmidad);
+            this.testingUniformity = false;
+        }, 1000)
 
-            var sumatoria_1 = 0;
-
-            // Recorro los subintervalos.
-            subIntervals.forEach((element) => {
-                
-                // Obtengo la frecuencia.
-                let frecuencia = element[2];
-                
-                let resultado_1 =  frecuencia - (n/k);
-
-                let resultado_2 = resultado_1 * resultado_1;
-
-                sumatoria_1 = sumatoria_1 + resultado_2;
-
-            });
-
-            let chi_cuadrado_calculado = sumatoria_1 * (k/n);
-            
-            console.log(chi_cuadrado_calculado);
-
-            this.testingUniformity = false; 
-        }, 1000);
-
-        
-
-        /*subIntervals.forEach((element) => {
-            document.write('Intervalo: ' + element[0] + ' - ' + element[1] + '/////// FRECUENCIA :' + element[2] + '<br>');
-        }); */
     }
+
+    
+
 }

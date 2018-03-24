@@ -77,6 +77,23 @@
         </div>
     </div>
 
+        <div class="row">
+        <div class="form-group col-4">
+            <input 
+                required
+                onlyNumbers
+                type="text" 
+                id="k" 
+                name="k" 
+                class="form-control"
+                [(ngModel)]="genValues.k" 
+            >
+            <label for="k" [ngClass]="{floating: genValues.k}">
+                Parametro K
+            </label>
+        </div>
+    </div>
+
     <!--<button type="button" class="button button-default" (click)="resetValues()">Reiniciar</button>-->
     <button type="button" class="button button-default" (click)="populateDefaultValues()">Cargar Valores</button>
 
@@ -97,7 +114,7 @@
         class="button button-primary" 
         [disabled]="testingUniformity"
         [ngClass]="{'disabled': testingUniformity}" 
-        (click)="uniformityTest()">
+        (click)="test_uniformidad()">
             Test de Uniformidad
         </button>
         <div *ngIf="testingUniformity" class="loading"></div>

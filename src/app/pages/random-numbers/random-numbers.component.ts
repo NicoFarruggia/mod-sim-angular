@@ -4,6 +4,8 @@ import { MessagesService } from '../../services/messages.service';
 import { RandomNumbersService } from '../../services/random-numbers.service';
 import { TestUniformidadService } from "../../services/test-uniformidad.service";
 
+declare const require;
+
 
 @Component({
   	selector: 'random-numbers',
@@ -96,8 +98,37 @@ export class RandomNumbersComponent {
         this.testingUniformity = true;
         setTimeout(() => {
             var rta_unifirmidad = this.testUniformidad.uniformityTest(this.valores_iniciales);
-            console.log(rta_unifirmidad);
             this.testingUniformity = false;
+            var chiSquaredTest = require('chi-squared-test');
+
+            // We expect a fair die
+            var expected = [];
+            
+            var resultado_1 = this.valores_iniciales['numbersQuant'] / this.valores_iniciales['k'];
+
+            for(let i =1; i <= this.valores_iniciales['k']; i++){
+                expected.push(resultado_1); 
+            }
+
+            var subIntervals = rta_unifirmidad['subIntervals'];
+            
+            // Looks pretty unfair...
+            var observed = [];
+
+            for(let interval of subIntervals){
+                observed.push(interval[2]);
+            }
+            
+            // Reduction in degrees of freedom is 1, since knowing 5 categories determines the 6th
+            var reduction = this.valores_iniciales['k'] - 1;
+            
+            var rta_chiSquaredTest= chiSquaredTest(observed, expected, reduction);
+            console.log("chiSquared: ");
+            console.log(rta_chiSquaredTest['chiSquared']);
+
+            console.log("NUESTRO CHI CUADRADO: ");
+            console.log(rta_unifirmidad['chi_cuadrado_calculado']);
+
         }, 1000)
 
     }

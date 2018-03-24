@@ -40,8 +40,6 @@ export class TestUniformidadService {
 
             // Recorro los subintervalos.
             subIntervals.forEach((element) => {
-
-                console.log(element);
                 
                 // Obtengo la frecuencia.
                 let frecuencia = element[2];
@@ -55,13 +53,11 @@ export class TestUniformidadService {
             });
 
             let chi_cuadrado_calculado = sumatoria_1 * (k/n);
-            
-            console.log("CHI CUADRADO: ");
-            console.log(chi_cuadrado_calculado);
 
 			let rta:any = {
 				'Estado': true,
-				'Respuesta': chi_cuadrado_calculado
+				'subIntervals': subIntervals,
+				'chi_cuadrado_calculado': chi_cuadrado_calculado
 			}
 
             return rta 

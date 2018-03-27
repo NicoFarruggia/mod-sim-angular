@@ -16,7 +16,6 @@ export class TestUniformidadService {
   }
 
   uniformityTest(): void {
-    console.log(this.__sesion.datos);
     let a = 0;
     let k = this.__sesion.datos['k'];
     var chi_cuadrado_de_tabla = this.__sesion.datos['chi_cuadrado_de_tabla'];
@@ -63,7 +62,7 @@ export class TestUniformidadService {
     let chi_cuadrado_calculado = sumatoria_1 * (k / n);
 
     let datos: any = {
-      'chi_cuadrado_calculado': chi_cuadrado_calculado,
+      'chi_cuadrado_calculado': chi_cuadrado_calculado.toFixed(2),
       'chi_cuadrado_de_tabla': chi_cuadrado_de_tabla
     };
 

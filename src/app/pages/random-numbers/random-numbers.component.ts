@@ -3,6 +3,7 @@ import {IGeneratorValues} from './generator-values.interface';
 import {MessagesService} from '../../services/messages.service';
 import {RandomNumbersService} from '../../services/random-numbers.service';
 import {TestUniformidadService} from "../../services/test-uniformidad.service";
+import {TestIndependenciaService} from "../../services/test-independencia.service";
 import {SesionService} from "../../services/sesion.service";
 
 declare const require;
@@ -21,16 +22,19 @@ export class RandomNumbersComponent {
   randomNumbersService: RandomNumbersService;
   testingUniformity: boolean;
   resultado_test_uniformidad: any;
+  resultado_test_independencia: any;
 
   valores_iniciales = {};
 
   constructor(messagesService: MessagesService,
               randomNumbersService: RandomNumbersService,
               private testUniformidad: TestUniformidadService,
+              private __test_independencia: TestIndependenciaService,
               private __sesion: SesionService) {
     this.messagesService = messagesService;
     this.randomNumbersService = randomNumbersService;
     this.resultado_test_uniformidad = false;
+    this.resultado_test_independencia = false;
   }
 
   ngOnInit(): void {
@@ -105,13 +109,15 @@ export class RandomNumbersComponent {
     this.messagesService.showNotification(type, title, message, 5000);
   }
 
-  test_uniformidad() {
+  test_aleatoriedad() {
     this.testingUniformity = true;
     setTimeout(() => {
-      var rta_unifirmidad = this.testUniformidad.uniformityTest();
+      
+      this.resultado_test_uniformidad = this.testUniformidad.uniformityTest();;
+      this.resultado_test_independencia = this.__test_independencia.test_corridas();
       this.testingUniformity = false;
-      this.resultado_test_uniformidad = rta_unifirmidad;
-
+      console.log(this.resultado_test_independencia);
+      
     }, 1000)
 
   }

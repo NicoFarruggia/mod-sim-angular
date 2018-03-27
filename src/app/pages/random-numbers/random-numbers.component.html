@@ -98,8 +98,8 @@
         class="button button-primary"
         [disabled]="testingUniformity"
         [ngClass]="{'disabled': testingUniformity}"
-        (click)="test_uniformidad()">
-        Test de Uniformidad
+        (click)="test_aleatoriedad()">
+        Test de Aleatoriedad
       </button>
       <div *ngIf="testingUniformity" class="loading"></div>
     </div>
@@ -112,7 +112,7 @@
     </h3>
     * Chi cuadrado de calculado: <b>{{resultado_test_uniformidad['Datos']['chi_cuadrado_calculado']}}</b>
     <br>
-    * Chi cuadrado de tabla: <b>{{resultado_test_uniformidad['Datos']['chi_cuadrado_de_tabla']}}</b>
+    * Chi cuadrado de tabla: <b>{{resultado_test_uniformidad['Datos']['chi_cuadrado_de_tabla']}}</b> - (Alfa: 0.05 ; Grados de libertad: k-1 = 4095)
     <br>
     <br>
     <h4
@@ -121,6 +121,23 @@
       (!resultado_test_uniformidad['Estado'] && {'color': 'red'})"
     >
       {{resultado_test_uniformidad['Respuesta']}}
+    </h4>
+    <hr>
+    <h3>
+      Test de independencia
+    </h3>
+
+    * Test de corrida (R): <b>{{resultado_test_independencia['Datos']['r']}}</b>
+    <br>
+    * Chi cuadrado de tabla: <b>{{resultado_test_independencia['Datos']['chi_cuadrado_de_tabla']}}</b> - (Alfa: 0.05 ; Grados de libertad: = 6)
+    <br>
+    <br>
+    <h4
+      [ngStyle]="
+      (resultado_test_independencia['Estado'] && {'color': 'green'}) ||
+      (!resultado_test_independencia['Estado'] && {'color': 'red'})"
+    >
+      {{resultado_test_independencia['Respuesta']}}
     </h4>
   </div>
 </ng-container>

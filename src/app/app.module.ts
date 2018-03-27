@@ -16,6 +16,7 @@ import { OnlyNumbersDirective } from "./directives/only-numbers.directive";
 import { MessagesService } from "./services/messages.service";
 import { RandomNumbersService } from "./services/random-numbers.service";
 import { TestUniformidadService } from "./services/test-uniformidad.service";
+import { TestIndependenciaService } from "./services/test-independencia.service";
 import { SesionService } from "./services/sesion.service";
 
 const appRoutes: Routes = [
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
         MessagesService,
         RandomNumbersService,
         TestUniformidadService,
+        TestIndependenciaService,
         SesionService
     ],
     bootstrap: [AppComponent]

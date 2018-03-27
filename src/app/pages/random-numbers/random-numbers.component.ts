@@ -22,7 +22,7 @@ export class RandomNumbersComponent {
 
     valores_iniciales = {};
 
-    constructor(messagesService: MessagesService, randomNumbersService: RandomNumbersService, private testUniformidad: TestUniformidadService) { 
+    constructor(messagesService: MessagesService, randomNumbersService: RandomNumbersService, private testUniformidad: TestUniformidadService) {
         this.messagesService = messagesService;
         this.randomNumbersService = randomNumbersService;
     }
@@ -30,7 +30,7 @@ export class RandomNumbersComponent {
     ngOnInit(): void {
         this.sequences = this.randomNumbersService.sequences.length;
     }
-    
+
     populateDefaultValues(): void {
         this.genValues = {
             parameterA: 17364,
@@ -49,6 +49,7 @@ export class RandomNumbersComponent {
         this.randomNumbers = [];
         let zi = this.genValues.initialSeed;
         this.valores_iniciales = this.genValues;
+        this.valores_iniciales['k'] = 4096;
         let ui: number;
 
         for (let i = 0; i <= this.genValues.numbersQuant; i++) {
@@ -103,25 +104,25 @@ export class RandomNumbersComponent {
 
             // We expect a fair die
             var expected = [];
-            
+
             var resultado_1 = this.valores_iniciales['numbersQuant'] / this.valores_iniciales['k'];
 
             for(let i =1; i <= this.valores_iniciales['k']; i++){
-                expected.push(resultado_1); 
+                expected.push(resultado_1);
             }
 
             var subIntervals = rta_unifirmidad['subIntervals'];
-            
+
             // Looks pretty unfair...
             var observed = [];
 
             for(let interval of subIntervals){
                 observed.push(interval[2]);
             }
-            
+
             // Reduction in degrees of freedom is 1, since knowing 5 categories determines the 6th
             var reduction = this.valores_iniciales['k'] - 1;
-            
+
             var rta_chiSquaredTest= chiSquaredTest(observed, expected, reduction);
             console.log("chiSquared: ");
             console.log(rta_chiSquaredTest['chiSquared']);
@@ -133,6 +134,6 @@ export class RandomNumbersComponent {
 
     }
 
-    
+
 
 }

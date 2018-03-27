@@ -1,5 +1,5 @@
 <h1>
-    Generador Congruencial Lineal Multiplicativo. 
+    Generador Congruencial Lineal Multiplicativo.
 
     <ng-container *ngIf="sequences">
         <br>
@@ -11,65 +11,65 @@
 <form *ngIf="!sequences" #f="ngForm" novalidate>
 	<div class="row">
 		<div class="form-group col-4">
-            <input 
+            <input
                 required
                 onlyNumbers
-                type="text" 
-                id="parameterA" 
-                name="parameterA" 
+                type="text"
+                id="parameterA"
+                name="parameterA"
                 class="form-control"
-                [(ngModel)]="genValues.parameterA" 
+                [(ngModel)]="genValues.parameterA"
             >
 			<label for="parameterA" [ngClass]="{floating: genValues.parameterA}">
                 Par&aacute;metro A
             </label>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="form-group col-4">
-            <input 
+            <input
                 required
                 onlyNumbers
-                type="text" 
+                type="text"
                 id="parameterM"
-                name="parameterM" 
+                name="parameterM"
                 class="form-control"
-                [(ngModel)]="genValues.parameterM" 
+                [(ngModel)]="genValues.parameterM"
             >
 			<label for="parameterM" [ngClass]="{floating: genValues.parameterM}">
                 Par&aacute;metro M
             </label>
 		</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="form-group col-4">
-            <input 
+            <input
                 required
                 onlyNumbers
-                type="text" 
-                id="initialSeed" 
-                name="initialSeed" 
+                type="text"
+                id="initialSeed"
+                name="initialSeed"
                 class="form-control"
-                [(ngModel)]="genValues.initialSeed" 
+                [(ngModel)]="genValues.initialSeed"
             >
 			<label for="initialSeed" [ngClass]="{floating: genValues.initialSeed}">
                 Semilla Inicial (Z0)
             </label>
 		</div>
     </div>
-    
+
     <div class="row">
         <div class="form-group col-4">
-            <input 
+            <input
                 required
                 onlyNumbers
-                type="text" 
-                id="numbersQuant" 
-                name="numbersQuant" 
+                type="text"
+                id="numbersQuant"
+                name="numbersQuant"
                 class="form-control"
-                [(ngModel)]="genValues.numbersQuant" 
+                [(ngModel)]="genValues.numbersQuant"
             >
             <label for="numbersQuant" [ngClass]="{floating: genValues.numbersQuant}">
                 Cantidad de n&uacute;meros
@@ -77,31 +77,14 @@
         </div>
     </div>
 
-        <div class="row">
-        <div class="form-group col-4">
-            <input 
-                required
-                onlyNumbers
-                type="text" 
-                id="k" 
-                name="k" 
-                class="form-control"
-                [(ngModel)]="genValues.k" 
-            >
-            <label for="k" [ngClass]="{floating: genValues.k}">
-                Parametro K
-            </label>
-        </div>
-    </div>
-
     <!--<button type="button" class="button button-default" (click)="resetValues()">Reiniciar</button>-->
     <button type="button" class="button button-default" (click)="populateDefaultValues()">Cargar Valores</button>
 
-    <button 
-    type="submit" 
-    class="button button-primary" 
+    <button
+    type="submit"
+    class="button button-primary"
     [disabled]="!f.valid"
-    [ngClass]="{'disabled': !f.valid}" 
+    [ngClass]="{'disabled': !f.valid}"
     (click)="generateNumbers()">
         Generar Numeros
     </button>
@@ -109,11 +92,11 @@
 
 <ng-container *ngIf="sequences">
     <div class="d-flex align-items-center">
-        <button 
-        type="button" 
-        class="button button-primary" 
+        <button
+        type="button"
+        class="button button-primary"
         [disabled]="testingUniformity"
-        [ngClass]="{'disabled': testingUniformity}" 
+        [ngClass]="{'disabled': testingUniformity}"
         (click)="test_uniformidad()">
             Test de Uniformidad
         </button>

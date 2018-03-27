@@ -54,11 +54,12 @@ export class TestUniformidadService {
 
     let chi_cuadrado_calculado = sumatoria_1 * (k / n);
 
+    //Declaro el diccionario de respuesta.
     let rta: any = {
       'Estado': true,
       'subIntervals': subIntervals,
       'chi_cuadrado_calculado': chi_cuadrado_calculado
-    }
+    };
 
     return rta
 

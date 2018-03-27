@@ -1,17 +1,25 @@
 import {Injectable} from '@angular/core';
 import {RandomNumbersService} from '../services/random-numbers.service';
+import { IGeneratorValues } from '../pages/random-numbers/generator-values.interface';
+import {SesionService} from "./sesion.service";
 
 @Injectable()
 export class TestUniformidadService {
 
-  constructor(private randomNumbersService: RandomNumbersService) {
+  genValues: IGeneratorValues = {};
+
+  constructor(
+    private randomNumbersService: RandomNumbersService,
+    private __sesion: SesionService,
+  ) {
 
   }
 
-  uniformityTest(valores_iniciales): void {
-
+  uniformityTest(): void {
+    console.log(this.__sesion.datos);
     let a = 0;
-    let k = valores_iniciales['k'];
+    let k = this.__sesion.datos['k'];
+    var chi_cuadrado_de_tabla = this.__sesion.datos['chi_cuadrado_de_tabla'];
     let randomNumber = 0;
     let subInterval = 1 / k;
     let subIntervalTemp = 0 - subInterval;
@@ -24,8 +32,8 @@ export class TestUniformidadService {
       subIntervals[a] = [subIntervalTemp, subIntervalTemp + subInterval, 0];
     }
 
-    for (let i = 0; i < this.randomNumbersService.sequences[0].length; i++) {
-      randomNumber = this.randomNumbersService.sequences[0][i];
+    for (let i = 0; i < this.__sesion.datos['secuencia'].length; i++) {
+      randomNumber = this.__sesion.datos['secuencia'][i];
       subIntervals.forEach((element) => {
         if (randomNumber >= element[0] && randomNumber < element[1]) {
           element[2]++;
@@ -34,7 +42,7 @@ export class TestUniformidadService {
     }
 
     // Obtengo N.
-    let n = valores_iniciales['numbersQuant'];
+    let n =  this.__sesion.datos['numbersQuant'];
 
     var sumatoria_1 = 0;
 
@@ -54,12 +62,24 @@ export class TestUniformidadService {
 
     let chi_cuadrado_calculado = sumatoria_1 * (k / n);
 
+    let datos: any = {
+      'chi_cuadrado_calculado': chi_cuadrado_calculado,
+      'chi_cuadrado_de_tabla': chi_cuadrado_de_tabla
+    };
+
     //Declaro el diccionario de respuesta.
     let rta: any = {
-      'Estado': true,
-      'subIntervals': subIntervals,
-      'chi_cuadrado_calculado': chi_cuadrado_calculado
+      'Datos': datos
     };
+
+    if(chi_cuadrado_calculado < chi_cuadrado_de_tabla){
+      rta['Estado'] = true;
+      rta['Respuesta'] = 'La frecuencia generada es uniforme.';
+    }
+    else {
+      rta['Estado'] = false;
+      rta['Respuesta'] = 'La frecuencia generada NO es uniforme.';
+    }
 
     return rta
 

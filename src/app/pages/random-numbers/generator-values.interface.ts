@@ -3,5 +3,6 @@ export interface IGeneratorValues {
     parameterM?: number,
     initialSeed?: number,
     numbersQuant?: number,
-    k?: number
+    k?: number,
+    chi_cuadrado_de_tabla?: number,
 }

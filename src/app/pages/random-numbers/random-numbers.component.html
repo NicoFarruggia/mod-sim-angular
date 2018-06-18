@@ -1,122 +1,143 @@
 <h1>
-    Generador Congruencial Lineal Multiplicativo. 
+  Generador Congruencial Lineal Multiplicativo.
 
-    <ng-container *ngIf="sequences">
-        <br>
-        <small *ngIf="sequences === 1">{{ sequences }} secuencia generada.</small>
-        <small *ngIf="sequences > 1">{{ sequences }} secuencias generadas.</small>
-    </ng-container>
+  <ng-container *ngIf="sequences">
+    <br>
+    <small *ngIf="sequences === 1">{{ sequences }} secuencia generada.</small>
+    <small *ngIf="sequences > 1">{{ sequences }} secuencias generadas.</small>
+  </ng-container>
 </h1>
 
 <form *ngIf="!sequences" #f="ngForm" novalidate>
-	<div class="row">
-		<div class="form-group col-4">
-            <input 
-                required
-                onlyNumbers
-                type="text" 
-                id="parameterA" 
-                name="parameterA" 
-                class="form-control"
-                [(ngModel)]="genValues.parameterA" 
-            >
-			<label for="parameterA" [ngClass]="{floating: genValues.parameterA}">
-                Par&aacute;metro A
-            </label>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="form-group col-4">
-            <input 
-                required
-                onlyNumbers
-                type="text" 
-                id="parameterM"
-                name="parameterM" 
-                class="form-control"
-                [(ngModel)]="genValues.parameterM" 
-            >
-			<label for="parameterM" [ngClass]="{floating: genValues.parameterM}">
-                Par&aacute;metro M
-            </label>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="form-group col-4">
-            <input 
-                required
-                onlyNumbers
-                type="text" 
-                id="initialSeed" 
-                name="initialSeed" 
-                class="form-control"
-                [(ngModel)]="genValues.initialSeed" 
-            >
-			<label for="initialSeed" [ngClass]="{floating: genValues.initialSeed}">
-                Semilla Inicial (Z0)
-            </label>
-		</div>
+  <div class="row">
+    <div class="form-group col-4">
+      <input
+        required
+        onlyNumbers
+        type="text"
+        id="parameterA"
+        name="parameterA"
+        class="form-control"
+        [(ngModel)]="genValues.parameterA"
+      >
+      <label for="parameterA" [ngClass]="{floating: genValues.parameterA}">
+        Par&aacute;metro A
+      </label>
     </div>
-    
-    <div class="row">
-        <div class="form-group col-4">
-            <input 
-                required
-                onlyNumbers
-                type="text" 
-                id="numbersQuant" 
-                name="numbersQuant" 
-                class="form-control"
-                [(ngModel)]="genValues.numbersQuant" 
-            >
-            <label for="numbersQuant" [ngClass]="{floating: genValues.numbersQuant}">
-                Cantidad de n&uacute;meros
-            </label>
-        </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-4">
+      <input
+        required
+        onlyNumbers
+        type="text"
+        id="parameterM"
+        name="parameterM"
+        class="form-control"
+        [(ngModel)]="genValues.parameterM"
+      >
+      <label for="parameterM" [ngClass]="{floating: genValues.parameterM}">
+        Par&aacute;metro M
+      </label>
     </div>
+  </div>
 
-        <div class="row">
-        <div class="form-group col-4">
-            <input 
-                required
-                onlyNumbers
-                type="text" 
-                id="k" 
-                name="k" 
-                class="form-control"
-                [(ngModel)]="genValues.k" 
-            >
-            <label for="k" [ngClass]="{floating: genValues.k}">
-                Parametro K
-            </label>
-        </div>
+  <div class="row">
+    <div class="form-group col-4">
+      <input
+        required
+        onlyNumbers
+        type="text"
+        id="initialSeed"
+        name="initialSeed"
+        class="form-control"
+        [(ngModel)]="genValues.initialSeed"
+      >
+      <label for="initialSeed" [ngClass]="{floating: genValues.initialSeed}">
+        Semilla Inicial (Z0)
+      </label>
     </div>
+  </div>
 
-    <!--<button type="button" class="button button-default" (click)="resetValues()">Reiniciar</button>-->
-    <button type="button" class="button button-default" (click)="populateDefaultValues()">Cargar Valores</button>
+  <div class="row">
+    <div class="form-group col-4">
+      <input
+        required
+        onlyNumbers
+        type="text"
+        id="numbersQuant"
+        name="numbersQuant"
+        class="form-control"
+        [(ngModel)]="genValues.numbersQuant"
+      >
+      <label for="numbersQuant" [ngClass]="{floating: genValues.numbersQuant}">
+        Cantidad de n&uacute;meros
+      </label>
+    </div>
+  </div>
 
-    <button 
-    type="submit" 
-    class="button button-primary" 
+  <!--<button type="button" class="button button-default" (click)="resetValues()">Reiniciar</button>-->
+  <button type="button" class="button button-default" (click)="populateDefaultValues()">Cargar Valores</button>
+
+  <button
+    type="submit"
+    class="button button-primary"
     [disabled]="!f.valid"
-    [ngClass]="{'disabled': !f.valid}" 
+    [ngClass]="{'disabled': !f.valid}"
     (click)="generateNumbers()">
-        Generar Numeros
-    </button>
+    Generar Numeros
+  </button>
 </form>
 
 <ng-container *ngIf="sequences">
+  <div *ngIf="!resultado_test_uniformidad">
     <div class="d-flex align-items-center">
-        <button 
-        type="button" 
-        class="button button-primary" 
+      <button
+        type="button"
+        class="button button-primary"
         [disabled]="testingUniformity"
-        [ngClass]="{'disabled': testingUniformity}" 
-        (click)="test_uniformidad()">
-            Test de Uniformidad
-        </button>
-        <div *ngIf="testingUniformity" class="loading"></div>
+        [ngClass]="{'disabled': testingUniformity}"
+        (click)="test_aleatoriedad()">
+        Test de Aleatoriedad
+      </button>
+      <div *ngIf="testingUniformity" class="loading"></div>
     </div>
+  </div>
+
+  <div *ngIf="resultado_test_uniformidad">
+
+    <h3>
+      Test de uniformidad
+    </h3>
+    * Chi cuadrado de calculado: <b>{{resultado_test_uniformidad['Datos']['chi_cuadrado_calculado']}}</b>
+    <br>
+    * Chi cuadrado de tabla: <b>{{resultado_test_uniformidad['Datos']['chi_cuadrado_de_tabla']}}</b> - (Alfa: 0.05 ; Grados de libertad: k-1 = 4095)
+    <br>
+    <br>
+    <h4
+      [ngStyle]="
+      (resultado_test_uniformidad['Estado'] && {'color': 'green'}) ||
+      (!resultado_test_uniformidad['Estado'] && {'color': 'red'})"
+    >
+      {{resultado_test_uniformidad['Respuesta']}}
+    </h4>
+    <hr>
+    <h3>
+      Test de independencia
+    </h3>
+
+    * Test de corrida (R): <b>{{resultado_test_independencia['Datos']['r']}}</b>
+    <br>
+    * Chi cuadrado de tabla: <b>{{resultado_test_independencia['Datos']['chi_cuadrado_de_tabla']}}</b> - (Alfa: 0.05 ; Grados de libertad: = 6)
+    <br>
+    <br>
+    <h4
+      [ngStyle]="
+      (resultado_test_independencia['Estado'] && {'color': 'green'}) ||
+      (!resultado_test_independencia['Estado'] && {'color': 'red'})"
+    >
+      {{resultado_test_independencia['Respuesta']}}
+    </h4>
+  </div>
 </ng-container>
